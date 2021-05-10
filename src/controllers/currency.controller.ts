@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { CurrencyConverterService } from './currency.service';
+import { CurrencyConverterService } from '../currency.service';
 
 @Controller()
 export class CurrencyController {
