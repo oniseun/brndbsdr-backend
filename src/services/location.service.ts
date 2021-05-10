@@ -1,6 +1,6 @@
 import { HttpService, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { RedisCacheService } from '../redis-cache/redis-cache.service';
+import { RedisCacheService } from './redis-cache.service';
 const LOG_PREFIX : string = 'LocationService:'
 
 @Injectable()
