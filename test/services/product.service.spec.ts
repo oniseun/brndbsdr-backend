@@ -14,7 +14,6 @@ describe('ProductService', () => {
     expect(service).toBeDefined();
   });
   it('should get products', async () => {
-    // jest.spyOn(service, 'getProducts').mockImplementation(() => pro);
 
     expect(service.getProducts()).toStrictEqual(products);
   });
