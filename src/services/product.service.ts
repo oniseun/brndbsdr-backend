@@ -1,11 +1,12 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { Product } from '../models/product.model';
 import * as productsjson from '../../db/products.json'
 const LOG_PREFIX : string = 'ProductService:'
 
 
 @Injectable()
 export class ProductService {
-  getProducts() : object{
+  getProducts() : Array<Product> | object{
     
     try {
 
