@@ -1,7 +1,7 @@
 
 
 import { ProductService } from '../../src/services/product.service';
-import * as products from '../../db/products.json'
+import products from '../../db/products.json'
 describe('ProductService', () => {
 
   let service: ProductService;
@@ -13,7 +13,7 @@ describe('ProductService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
-  it('should get products', async () => {
+  it('should get products', () => {
 
     expect(service.getProducts()).toStrictEqual(products);
   });
