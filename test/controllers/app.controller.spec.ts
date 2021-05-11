@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppController } from '../src/controllers/app.controller';
-import { AppService } from '../src/services/app.service';
+import { AppController } from '../../src/controllers/app.controller';
+import { AppService } from '../../src/services/app.service';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -15,8 +15,11 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHealth()).toBe('Hello World!');
+    it('should have a good health check', () => {
+      expect(appController.getHealth()).toBe( {
+        success : true,
+        message : "Hello there! I'm OK!"
+      });
     });
   });
 });
