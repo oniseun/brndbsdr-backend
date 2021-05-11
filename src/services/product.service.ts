@@ -1,6 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import * as path from 'path'
-import * as fs from 'fs'
+import * as productsjson from '../../db/products.json'
 const LOG_PREFIX : string = 'ProductService:'
 
 
@@ -10,9 +9,7 @@ export class ProductService {
     
     try {
 
-      const productFile: string = fs.readFileSync(path.resolve(process.cwd(),`../db/products.json`)).toString()
-  
-      const products: object = JSON.parse(productFile);
+      const products: object = productsjson;
   
       return products
 

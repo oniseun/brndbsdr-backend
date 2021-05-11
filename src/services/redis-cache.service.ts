@@ -9,15 +9,15 @@ export class RedisCacheService {
         return await this.cache.get(key);
     }
 
-    async set(key, value) {
+    async set(key, value): Promise<any> {
         await this.cache.set(key, value, 1000);
     }
 
-    async reset() {
+    async reset(): Promise<any> {
         await this.cache.reset();
     }
 
-    async del(key) {
+    async del(key): Promise<any> {
         await this.cache.del(key);
     }
 }
