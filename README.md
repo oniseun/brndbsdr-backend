@@ -44,7 +44,25 @@ REDIS_PORT=
 CACHE_TTL=7200
 MAX_ITEM_IN_CACHE=100
 
+### `Docker run locally`
+EXPORT this environment variable
+CURRENCY_CONVERTER_ACCESS_KEY= **your data.fixer.io ACCESS KEY**
+
+- Build the image and run Locally with docker compose
+
+$ docker compose up
+
+- backend server: **http://localhost:2020**
+- redis-commander: **http://localhost:8081**
+Backend server, redis server ans redis commander will be on the same virtual network on your local systme
+### `Docker run in production`
+- ensure to set all environment variables in your virtual host as production will not use .env file for environment variables
+- Build the image 
+$ docker build -t  brndbsdr-backend-prod  -f Dockerfile.prod .
+
+### `Run with npm`
 ```bash
+
 # development
 $ npm run start
 

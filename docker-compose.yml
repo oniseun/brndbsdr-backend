@@ -1,0 +1,51 @@
+
+version: "3.7"
+services:
+  redis:
+    container_name: redis-brndbsdr
+    image: redis
+    networks:
+      brndbsdr-network:
+        ipv4_address: 172.26.0.20
+        aliases:
+          - redis.brndbsdr.local
+
+  redis-commander:
+    container_name: redis-commander-brndbsdr
+    hostname: redis-commander-brndbsdr
+    image: rediscommander/redis-commander:latest
+    ports:
+        - "8081:8081"
+    links:
+        - redis
+    environment:
+      - REDIS_HOSTS=redis
+    networks:
+      brndbsdr-network:
+        ipv4_address: 172.26.0.21
+        aliases:
+          - redis-commander.brndbsdr.local
+
+  backend:
+    container_name: brndbsdr-backend
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "2020:2020"
+    links:
+        - redis
+    environment:
+        - REDIS_HOST=redis
+    networks:
+      brndbsdr-network:
+        ipv4_address: 172.26.0.22
+        aliases:
+          - brndbsdr-backend.local
+
+networks:
+    brndbsdr-network:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.26.0.0/16
