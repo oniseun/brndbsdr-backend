@@ -10,10 +10,10 @@ describe('LocationService', () => {
   let configService: ConfigService;
   let redis: RedisCacheService
   beforeEach(() => {
-    httpService = new HttpService()
-    configService = new ConfigService()
-    redis =  new RedisCacheService(Cache)
-    service = new LocationService(httpService, configService, redis)
+    httpService = new HttpService();
+    configService = new ConfigService();
+    redis =  new RedisCacheService(Cache);
+    service = new LocationService(httpService, configService, redis);
   });
 
   it('should get location details by ip address', async () => {

@@ -5,14 +5,14 @@ import { LocationService } from '../../src/services/location.service';
 
 describe('CurrencyController', () => {
   let locationController: LocationController;
-  let locationService: LocationService
+  let locationService: LocationService;
 
- const locationDetails =  {
+ const locationDetails=  {
     "ip" : "8.8.8.8",
     "city" : "Mountain View",
     "region" : "California",
     "region_code" : "CA",
-    "country_code" : "US",
+    "country_code" : "US", 
     "country_name" : "United States",
     "country_capital" : "Washington",
     "timezone" : "America/Los_Angeles",
@@ -35,7 +35,7 @@ describe('CurrencyController', () => {
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [LocationController],
-      providers: [locationServiceProvider ],
+      providers: [locationServiceProvider],
     }).compile();
 
     locationService = app.get<LocationService>(LocationService);
@@ -48,11 +48,11 @@ describe('CurrencyController', () => {
 
   describe('getRates', () => {
     it('should return location details by Ip', async () => {
-      const ip = '8.8.8.8'
+      const req = { clientIp: '8.8.8.8' };
       const prom : Promise<object> = new Promise(resolve => resolve(locationDetails));
       jest.spyOn(locationService, 'getLocationByIp').mockImplementation(() => prom);
 
-      expect(await locationController.getCurrent(ip)).toBe(locationDetails);
+      expect(await locationController.getCurrent(req)).toBe(locationDetails);
     });
   });
 });

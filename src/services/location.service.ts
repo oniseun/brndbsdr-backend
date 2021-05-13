@@ -2,7 +2,7 @@ import { HttpService, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { RedisCacheService } from './redis-cache.service';
 const LOG_PREFIX : string = 'LocationService:'
-
+import defaultLocation from '../../db/defaultLocation.json';
 @Injectable()
 export class LocationService {
   constructor(private httpService: HttpService, private env: ConfigService, private cacheManager: RedisCacheService) {}
@@ -25,10 +25,12 @@ export class LocationService {
         RESPONSE: ${JSON.stringify(response.data)}`,
         LOG_PREFIX
       );
-      
+      if (response.data.error || response.data.reserved) {
+        Logger.log( `RESERVED/LOCAL IP ADDRESS DETECTED -> Returning default location`, LOG_PREFIX);
+        return defaultLocation;
+      }
       Logger.log( `CACHING LOCATION DATA -> ${CACHE_KEY}`, LOG_PREFIX);
-
-      await this.cacheManager.set(CACHE_KEY , response.data); // add to cache
+      await this.cacheManager.set(CACHE_KEY, response.data); // add to cache
 
       return response.data;
     } catch (error) {
@@ -36,7 +38,7 @@ export class LocationService {
         `GET URL: ${url} - ERROR: ${error.code} ${error.message} ${JSON.stringify(error.response)}`,
         LOG_PREFIX,
       );
-      throw error;
+      return defaultLocation;
     }
   }
 
