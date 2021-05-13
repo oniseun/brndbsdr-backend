@@ -33,17 +33,18 @@ $ npm install
 ```
 
 ## Running the app
-Create .env file and add the following
-PORT=2020
-LOCATION_CHECKER_URL=https://ipapi.co
-CURRENCY_CONVERTER_URL=http://data.fixer.io/api/latest
-CURRENCY_CONVERTER_BASE=EUR
-CURRENCY_CONVERTER_ACCESS_KEY=<data.fixer api accesskey>
-REDIS_HOST=<redis host: leave black if local >
-REDIS_PORT=
-CACHE_TTL=7200
-MAX_ITEM_IN_CACHE=100
-
+```bash
+#Create .env file and add the following
+$ PORT=2020
+$ LOCATION_CHECKER_URL=https://ipapi.co
+$ CURRENCY_CONVERTER_URL=http://data.fixer.io/api/latest
+$ CURRENCY_CONVERTER_BASE=EUR
+$ CURRENCY_CONVERTER_ACCESS_KEY=<data.fixer api accesskey>
+$ REDIS_HOST=<redis host: leave black if local >
+$ REDIS_PORT=
+$ CACHE_TTL=7200
+$ MAX_ITEM_IN_CACHE=100
+```
 ## `Docker run locally`
 
 ```bash
