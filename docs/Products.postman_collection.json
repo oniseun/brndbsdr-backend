@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "e6e33925-c45f-43f8-9ab2-b429ee733384",
+		"name": "Products",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_ENDPOINT}}/products",
+					"host": [
+						"{{API_ENDPOINT}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getLocation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_ENDPOINT}}/location/details",
+					"host": [
+						"{{API_ENDPOINT}}"
+					],
+					"path": [
+						"location",
+						"details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCurrencyRates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_ENDPOINT}}/currency/rates",
+					"host": [
+						"{{API_ENDPOINT}}"
+					],
+					"path": [
+						"currency",
+						"rates"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
