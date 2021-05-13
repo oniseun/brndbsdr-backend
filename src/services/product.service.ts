@@ -1,26 +1,19 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Product } from '../models/product.model';
-import productsjson from '../../db/products.json'
-const LOG_PREFIX : string = 'ProductService:'
-
+import productsjson from '../../db/products.json';
+const LOG_PREFIX = 'ProductService:';
 
 @Injectable()
 export class ProductService {
-  getProducts() : Array<Product> | object{
-    
+  getProducts(): Array<Product> | object {
     try {
-
       const products: Array<Product> = productsjson;
-  
-      return products
 
+      return products;
     } catch (error) {
+      Logger.log(error.toString(), LOG_PREFIX);
 
-      Logger.log(error.toString(),  LOG_PREFIX );
-
-      throw error
+      throw error;
     }
-
   }
-  
 }

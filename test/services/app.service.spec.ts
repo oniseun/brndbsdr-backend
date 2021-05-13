@@ -1,13 +1,10 @@
-
-
 import { AppService } from '../../src/services/app.service';
 
 describe('AppService', () => {
-
   let service: AppService;
 
   beforeEach(() => {
-    service = new AppService()
+    service = new AppService();
   });
 
   it('should be defined', () => {
@@ -15,10 +12,8 @@ describe('AppService', () => {
   });
   it('should get health', async () => {
     expect(service.getHealth()).toStrictEqual({
-      success : true,
-      message : "Hello there! I'm OK!"
+      success: true,
+      message: "Hello there! I'm OK!",
     });
   });
-
- 
 });

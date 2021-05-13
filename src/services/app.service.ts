@@ -5,8 +5,8 @@ import { Health } from '../models/health.model';
 export class AppService {
   getHealth(): Health {
     return {
-      success : true,
-      message : "Hello there! I'm OK!"
-    }
+      success: true,
+      message: "Hello there! I'm OK!",
+    };
   }
 }

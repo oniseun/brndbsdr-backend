@@ -8,6 +8,6 @@ export class CurrencyController {
 
   @Get('currency/rates')
   async getRates(): Promise<CurrencyRates | object> {
-    return this.service.getRates()
+    return this.service.getRates();
   }
 }

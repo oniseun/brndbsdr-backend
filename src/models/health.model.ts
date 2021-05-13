@@ -1,4 +1,4 @@
-export interface Health  {
-    "success": boolean,
-    "message": string
-  }
+export interface Health {
+  success: boolean;
+  message: string;
+}

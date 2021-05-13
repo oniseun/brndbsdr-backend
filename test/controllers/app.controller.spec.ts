@@ -16,8 +16,8 @@ describe('AppController', () => {
   describe('root', () => {
     it('should have a good health check', () => {
       expect(appController.getHealth()).toStrictEqual({
-        success : true,
-        message : "Hello there! I'm OK!"
+        success: true,
+        message: "Hello there! I'm OK!",
       });
     });
   });

@@ -1,5 +1,3 @@
-
-
 import { ProductService } from '../../src/services/product.service';
 import products from '../../db/products.json';
 describe('ProductService', () => {
@@ -13,9 +11,6 @@ describe('ProductService', () => {
     expect(service).toBeDefined();
   });
   it('should get products', () => {
-
     expect(service.getProducts()).toStrictEqual(products);
   });
-
- 
 });

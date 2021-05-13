@@ -13,6 +13,6 @@ export class AppController {
 
   @Get('/health')
   getHealth(): Health {
-    return this.index()
+    return this.index();
   }
 }

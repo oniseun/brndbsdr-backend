@@ -12,14 +12,30 @@ import { AppService } from '../services/app.service';
 import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
-  imports: [ConfigModule.forRoot({
-    isGlobal: true,
-    ignoreEnvFile: ['staging', 'production'].includes(process.env.NODE_ENV),
-  }),ThrottlerModule.forRoot({
-    ttl: 60,
-    limit: 10,
-  }), RedisCacheModule, HttpModule],
-  controllers: [AppController,  ProductController, CurrencyController, LocationController],
-  providers: [  ConfigService, AppService, ProductService, CurrencyConverterService, LocationService]
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      ignoreEnvFile: ['staging', 'production'].includes(process.env.NODE_ENV),
+    }),
+    ThrottlerModule.forRoot({
+      ttl: 60,
+      limit: 10,
+    }),
+    RedisCacheModule,
+    HttpModule,
+  ],
+  controllers: [
+    AppController,
+    ProductController,
+    CurrencyController,
+    LocationController,
+  ],
+  providers: [
+    ConfigService,
+    AppService,
+    ProductService,
+    CurrencyConverterService,
+    LocationService,
+  ],
 })
 export class AppModule {}

@@ -41,7 +41,7 @@ describe('LocationService', () => {
       org: 'Google LLC',
     };
     const ip = '8.8.8.8';
-    const prom: Promise<object> = new Promise((resolve) =>
+    const prom: Promise<any> = new Promise((resolve) =>
       resolve(locationDetails),
     );
     jest.spyOn(service, 'getLocationByIp').mockImplementation(() => prom);

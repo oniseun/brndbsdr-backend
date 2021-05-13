@@ -9,7 +9,7 @@ async function bootstrap() {
     origin: true,
     methods: 'GET',
     credentials: true,
-});
+  });
   app.use(requestIp.mw());
   app.use(helmet());
   await app.listen(process.env.PORT || 3000);
