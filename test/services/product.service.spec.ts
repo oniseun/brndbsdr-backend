@@ -3,11 +3,10 @@
 import { ProductService } from '../../src/services/product.service';
 import products from '../../db/products.json';
 describe('ProductService', () => {
-
   let service: ProductService;
 
   beforeEach(() => {
-    service = new ProductService()
+    service = new ProductService();
   });
 
   it('should be defined', () => {
