@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CurrencyController } from '../../src/currency/currency.controller';
-import { CurrencyConverterService } from '../../src/currency/currency.service';
+import { CurrencyController } from './currency.controller';
+import { CurrencyConverterService } from './currency.service';
 
 describe('CurrencyController', () => {
   let currencyController: CurrencyController;
