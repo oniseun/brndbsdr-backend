@@ -56,6 +56,7 @@ $ EXPORT CURRENCY_CONVERTER_ACCESS_KEY=**your data.fixer.io ACCESS KEY**
 $ docker compose up
 
 #  backend server: **http://localhost:2020**
+#  graphql server: **http://localhost:2020/graphql**
 #  redis-commander: **http://localhost:8081**
 #  Backend server, redis server ans redis commander will be on the same virtual network on your local systme
 ```
