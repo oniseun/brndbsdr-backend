@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { LocationController } from './location.controller';
+import { LocationResolver } from './location.resolver';
 import { LocationService } from './location.service';
 
-describe('LocationController', () => {
-  let locationController: LocationController;
+describe('LocationResolver', () => {
+  let locationResolver: LocationResolver;
   let locationService: LocationService;
 
   const locationDetails = {
@@ -33,21 +33,20 @@ describe('LocationController', () => {
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [LocationController],
-      providers: [locationServiceProvider],
+      providers: [LocationResolver, locationServiceProvider],
     }).compile();
 
     locationService = app.get<LocationService>(LocationService);
-    locationController = app.get<LocationController>(LocationController);
+    locationResolver = app.get<LocationResolver>(LocationResolver);
   });
 
   it('should be defined', () => {
-    expect(locationController).toBeDefined();
+    expect(locationResolver).toBeDefined();
   });
 
   describe('getRates', () => {
     it('should return location details by Ip', async () => {
-      const req = { clientIp: '8.8.8.8' };
+      const ctx = { req: { clientIp: '8.8.8.8' } };
       const prom: Promise<any> = new Promise((resolve) =>
         resolve(locationDetails),
       );
@@ -55,7 +54,7 @@ describe('LocationController', () => {
         .spyOn(locationService, 'getLocationByIp')
         .mockImplementation(() => prom);
 
-      expect(await locationController.getCurrent(req)).toBe(locationDetails);
+      expect(await locationResolver.getLocationByIp(ctx)).toBe(locationDetails);
     });
   });
 });
