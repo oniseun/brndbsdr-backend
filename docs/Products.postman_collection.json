@@ -6,6 +6,100 @@
 	},
 	"item": [
 		{
+			"name": "graphql",
+			"item": [
+				{
+					"name": "products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n    getProducts {\n        id\n        name\n        priceUSD\n        photos\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{API_ENDPOINT}}/graphql",
+							"host": [
+								"{{API_ENDPOINT}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLocation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n    getLocationByIp {\n        ip\n        version\n        country\n        country_name\n        country_code\n        currency\n        currency_name\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{API_ENDPOINT}}/graphql",
+							"host": [
+								"{{API_ENDPOINT}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCurrencyRates",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n    getRates {\n        success\n        timestamp\n        base\n        date\n        rates\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{API_ENDPOINT}}/graphql",
+							"host": [
+								"{{API_ENDPOINT}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_ENDPOINT}}/products",
+					"host": [
+						"{{API_ENDPOINT}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "products",
 			"request": {
 				"method": "GET",
