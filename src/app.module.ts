@@ -5,6 +5,8 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { CurrencyModule } from './currency/currency.module';
 import { LocationModule } from './location/location.module';
 import { ProductModule } from './product/product.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -22,5 +24,7 @@ import { ProductModule } from './product/product.module';
     LocationModule,
     ProductModule,
   ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
