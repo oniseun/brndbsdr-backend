@@ -1,7 +1,7 @@
-import { LocationService } from '../../src/services/location.service';
+import { LocationService } from '../../src/location/location.service';
 import { HttpService } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { RedisCacheService } from '../../src/services/redis-cache.service';
+import { RedisCacheService } from '../../src/redis-cache/redis-cache.service';
 import { Cache } from 'cache-manager';
 describe('LocationService', () => {
   let service: LocationService;

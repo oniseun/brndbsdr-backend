@@ -1,7 +1,7 @@
-import { CurrencyConverterService } from '../../src/services/currency.service';
+import { CurrencyConverterService } from '../../src/currency/currency.service';
 import { HttpService } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { RedisCacheService } from '../../src/services/redis-cache.service';
+import { RedisCacheService } from '../../src/redis-cache/redis-cache.service';
 import { Cache } from 'cache-manager';
 describe('CurrencyConverterService', () => {
   let service: CurrencyConverterService;

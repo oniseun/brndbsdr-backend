@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
-import { CurrencyRates } from '../models/currency-rates.model';
-import { CurrencyConverterService } from '../services/currency.service';
+import { CurrencyRates } from './currency-rates.model';
+import { CurrencyConverterService } from './currency.service';
 
 @Controller()
 export class CurrencyController {

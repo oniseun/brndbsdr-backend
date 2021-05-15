@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { Product } from '../models/product.model';
+import { Product } from './product.model';
 import productsjson from '../../db/products.json';
 const LOG_PREFIX = 'ProductService:';
 

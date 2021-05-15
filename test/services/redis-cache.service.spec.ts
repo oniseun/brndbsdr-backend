@@ -1,4 +1,4 @@
-import { RedisCacheService } from '../../src/services/redis-cache.service';
+import { RedisCacheService } from '../../src/redis-cache/redis-cache.service';
 import { Cache } from 'cache-manager';
 describe('RedisCacheService', () => {
   let service: RedisCacheService;

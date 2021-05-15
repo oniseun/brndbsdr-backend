@@ -1,27 +1,23 @@
 import { HttpService, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { CurrencyRates } from '../models/currency-rates.model';
-import { RedisCacheService } from './redis-cache.service';
-const LOG_PREFIX = 'CurrencyConverterService:';
-
+import { RedisCacheService } from '../redis-cache/redis-cache.service';
+const LOG_PREFIX = 'LocationService:';
+import defaultLocation from '../../db/defaultLocation.json';
 @Injectable()
-export class CurrencyConverterService {
+export class LocationService {
   constructor(
     private httpService: HttpService,
     private env: ConfigService,
     private cacheManager: RedisCacheService,
   ) {}
-  async getRates(): Promise<CurrencyRates | any> {
-    const url: string = this.env.get('CURRENCY_CONVERTER_URL');
-    const access_key: string = this.env.get('CURRENCY_CONVERTER_ACCESS_KEY');
-    const base: string = this.env.get('CURRENCY_CONVERTER_BASE');
+  async getLocationByIp(ip: string): Promise<object> {
+    const CACHE_KEY = `IP_${ip}`;
+    const url = `${this.env.get('LOCATION_CHECKER_URL')}/${ip}/json`;
     const headers: object = { 'Content-Type': 'application/json' };
-    const CACHE_KEY = `RATES_${base}`;
-
     const cachedData = await this.cacheManager.get(CACHE_KEY);
     if (cachedData) {
       Logger.log(
-        `FETCHING CURRENCY RATES FROM CACHE ${CACHE_KEY} -> ${JSON.stringify(
+        `FETCHING LOCATION DATA FROM CACHE ${CACHE_KEY} -> ${JSON.stringify(
           cachedData,
         )}`,
         LOG_PREFIX,
@@ -30,9 +26,7 @@ export class CurrencyConverterService {
     }
 
     try {
-      const response = await this.httpService
-        .get(url, { headers, params: { access_key, base } })
-        .toPromise();
+      const response = await this.httpService.get(url, { headers }).toPromise();
 
       Logger.log(
         `GET URL: ${url} - 
@@ -40,7 +34,14 @@ export class CurrencyConverterService {
         RESPONSE: ${JSON.stringify(response.data)}`,
         LOG_PREFIX,
       );
-      Logger.log(`CACHING CURRENCY RATES -> ${CACHE_KEY}`, LOG_PREFIX);
+      if (response.data.error || response.data.reserved) {
+        Logger.log(
+          `RESERVED/LOCAL IP ADDRESS DETECTED -> Returning default location`,
+          LOG_PREFIX,
+        );
+        return defaultLocation;
+      }
+      Logger.log(`CACHING LOCATION DATA -> ${CACHE_KEY}`, LOG_PREFIX);
       await this.cacheManager.set(CACHE_KEY, response.data); // add to cache
 
       return response.data;
@@ -51,7 +52,7 @@ export class CurrencyConverterService {
         } ${JSON.stringify(error.response)}`,
         LOG_PREFIX,
       );
-      throw error;
+      return defaultLocation;
     }
   }
 }

@@ -1,4 +1,4 @@
-import { ProductService } from '../../src/services/product.service';
+import { ProductService } from '../../src/product/product.service';
 import products from '../../db/products.json';
 describe('ProductService', () => {
   let service: ProductService;
