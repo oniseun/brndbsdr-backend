@@ -1,6 +1,7 @@
 import { HttpService, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { RedisCacheService } from '../redis-cache/redis-cache.service';
+import { Location } from './location.model';
 const LOG_PREFIX = 'LocationService:';
 import defaultLocation from '../../db/defaultLocation.json';
 @Injectable()
@@ -10,7 +11,7 @@ export class LocationService {
     private env: ConfigService,
     private cacheManager: RedisCacheService,
   ) {}
-  async getLocationByIp(ip: string): Promise<object> {
+  async getLocationByIp(ip: string): Promise<Location> {
     const CACHE_KEY = `IP_${ip}`;
     const url = `${this.env.get('LOCATION_CHECKER_URL')}/${ip}/json`;
     const headers: object = { 'Content-Type': 'application/json' };

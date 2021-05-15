@@ -5,9 +5,9 @@ const LOG_PREFIX = 'ProductService:';
 
 @Injectable()
 export class ProductService {
-  getProducts(): Array<Product> | object {
+  getProducts(): Product[] {
     try {
-      const products: Array<Product> = productsjson;
+      const products: Product[] = productsjson;
 
       return products;
     } catch (error) {

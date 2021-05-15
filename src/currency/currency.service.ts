@@ -1,6 +1,6 @@
 import { HttpService, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { CurrencyRates } from './currency-rates.model';
+import { Currency } from './currency.model';
 import { RedisCacheService } from '../redis-cache/redis-cache.service';
 const LOG_PREFIX = 'CurrencyConverterService:';
 
@@ -11,7 +11,7 @@ export class CurrencyConverterService {
     private env: ConfigService,
     private cacheManager: RedisCacheService,
   ) {}
-  async getRates(): Promise<CurrencyRates | any> {
+  async getRates(): Promise<Currency> {
     const url: string = this.env.get('CURRENCY_CONVERTER_URL');
     const access_key: string = this.env.get('CURRENCY_CONVERTER_ACCESS_KEY');
     const base: string = this.env.get('CURRENCY_CONVERTER_BASE');
